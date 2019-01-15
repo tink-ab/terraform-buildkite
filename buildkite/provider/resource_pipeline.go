@@ -9,7 +9,7 @@ import (
 	"github.com/saymedia/terraform-buildkite/buildkite/client"
 )
 
-var providerSettingsExcluded = []string{"repository", "account"}
+var providerSettingsExcluded = []string{"repository", "account", "commit_status_404s"}
 
 func resourcePipeline() *schema.Resource {
 	return &schema.Resource{
@@ -253,10 +253,6 @@ func resourcePipeline() *schema.Resource {
 						},
 						"separate_pull_request_statuses": {
 							Type:     schema.TypeBool,
-							Optional: true,
-						},
-						"commit_status_404s": {
-							Type:     schema.TypeInt,
 							Optional: true,
 						},
 					},
