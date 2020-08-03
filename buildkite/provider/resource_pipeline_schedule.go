@@ -7,7 +7,7 @@ import (
 
 	"github.com/hashicorp/terraform/helper/schema"
 
-	"github.com/saymedia/terraform-buildkite/buildkite/client"
+	"github.com/tink-ab/terraform-buildkite/buildkite/client"
 )
 
 func resourcePipelineSchedule() *schema.Resource {

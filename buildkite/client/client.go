@@ -14,7 +14,7 @@ import (
 	"github.com/machinebox/graphql"
 	"github.com/pkg/errors"
 
-	"github.com/saymedia/terraform-buildkite/buildkite/version"
+	"github.com/tink-ab/terraform-buildkite/buildkite/version"
 )
 
 const (

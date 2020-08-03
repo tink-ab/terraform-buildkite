@@ -1,4 +1,4 @@
-module github.com/saymedia/terraform-buildkite
+module github.com/tink-ab/terraform-buildkite
 
 go 1.13
 
