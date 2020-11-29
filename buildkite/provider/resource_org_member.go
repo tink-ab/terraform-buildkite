@@ -1,11 +1,11 @@
 package provider
 
 import (
-	"github.com/hashicorp/terraform/helper/validation"
 	"github.com/pkg/errors"
 	"log"
 
-	"github.com/hashicorp/terraform/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 
 	"github.com/tink-ab/terraform-provider-buildkite/buildkite/client"
 )
