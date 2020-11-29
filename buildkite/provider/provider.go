@@ -9,6 +9,10 @@ import (
 	"github.com/tink-ab/terraform-provider-buildkite/buildkite/version"
 )
 
+const (
+	userAgent = "terraform-provider-buildkite/"
+)
+
 func Provider() *schema.Provider {
 	log.Printf("[DEBUG] Buildkite provider version %s", version.Version)
 	return &schema.Provider{
@@ -42,5 +46,5 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 	orgName := d.Get("organization").(string)
 	apiToken := d.Get("api_token").(string)
 
-	return client.NewClient(orgName, apiToken), nil
+	return client.NewClient(orgName, apiToken, userAgent+version.Version), nil
 }
