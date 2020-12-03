@@ -11,6 +11,25 @@ const (
 	OrganizationMemberRoleAdmin  = "ADMIN"
 )
 
+type paginatedResponse struct {
+	Count    int
+	PageInfo struct {
+		HasNextPage bool
+		EndCursor   string
+	}
+}
+
+type organizationMembersResponse struct {
+	Organization struct {
+		Members struct {
+			paginatedResponse
+			Edges []struct {
+				Node OrganizationMember
+			}
+		}
+	}
+}
+
 type organizationMemberResponse struct {
 	OrgMember OrganizationMember `json:"organizationMember"`
 }
@@ -37,6 +56,58 @@ type User struct {
 	Id    string `json:"id,omitempty"`
 	Name  string `json:"name,omitempty"`
 	Email string `json:"email,omitempty"`
+}
+
+func (c *Client) GetOrganizationMembers() (*[]OrganizationMember, error) {
+	req := graphql.NewRequest(`
+query OrganizationMembers($orgSlug: ID!, $first: Int!, $after: String) {
+	organization(slug: $orgSlug) {
+		members(first: $first, after: $after, order: NAME) {
+			count
+			pageInfo {
+				hasNextPage
+				endCursor
+			}
+			edges {
+				node {
+					id
+					createdAt
+					uuid
+					role
+					user {
+						id
+						name
+						email
+						bot
+					}
+				}
+			}
+		}
+	}
+}
+`)
+	req.Var("orgSlug", c.orgSlug)
+	req.Var("first", 200)
+
+	var response organizationMembersResponse
+	var result []OrganizationMember
+
+	for {
+		response = organizationMembersResponse{}
+		if err := c.graphQLRequest(req, &response); err != nil {
+			return nil, errors.Wrapf(err, "failed to get organization members")
+		}
+		for _, e := range response.Organization.Members.Edges {
+			result = append(result, e.Node)
+		}
+		if response.Organization.Members.PageInfo.HasNextPage {
+			req.Var("after", response.Organization.Members.PageInfo.EndCursor)
+		} else {
+			break
+		}
+	}
+
+	return &result, nil
 }
 
 func (c *Client) GetOrganizationMember(uuid string) (*OrganizationMember, error) {
