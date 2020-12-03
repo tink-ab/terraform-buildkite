@@ -18,9 +18,9 @@ GO111MODULE=off go get github.com/mitchellh/gox
 # Build the provider
 gox -arch="$GOX_ARCH" \
     -os="$GOX_OS" \
-    -ldflags="-X github.com/saymedia/terraform-buildkite/buildkite/version.Version=${PROVIDER_VERSION}" \
+    -ldflags="-X github.com/tink-ab/terraform-provider-buildkite/buildkite/version.Version=${PROVIDER_VERSION}" \
     -output="$GOX_MAIN_TEMPLATE" \
-    github.com/saymedia/terraform-buildkite/cmd/terraform-provider-buildkite
+    github.com/tink-ab/terraform-provider-buildkite/cmd/terraform-provider-buildkite
 
 # ZZZZZZZZZZZZZZZZZZZZIPPIT
 echo "--- Build done"
@@ -33,5 +33,5 @@ for os in $GOX_OS; do
 done
 echo "--- DING! Fries are done"
 cd "$DISTDIR"
-openssl dgst -r -sha256 ./*.zip > sha256s.txt
+openssl dgst -r -sha256 ./*.zip >sha256s.txt
 exit 0

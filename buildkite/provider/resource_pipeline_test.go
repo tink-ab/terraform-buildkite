@@ -5,10 +5,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 
-	buildkiteClient "github.com/saymedia/terraform-buildkite/buildkite/client"
+	buildkiteClient "github.com/tink-ab/terraform-provider-buildkite/buildkite/client"
 )
 
 func TestAccPipeline_basic_unknown(t *testing.T) {
@@ -208,7 +208,7 @@ func testAccCheckBuildkitePipelineBasicAttributesFactory(repoProvider string) re
 const testAccPipeline_basicUnknown = `
 resource "buildkite_pipeline" "test_unknown" {
   name = "tf-acc-basic-unknown"
-  repository = "git@example.com:terraform-provider-buildkite/terraform-buildkite.git"
+  repository = "git@example.com:terraform-provider-buildkite/terraform-provider-buildkite.git"
 
   step {
     type = "script"
@@ -221,7 +221,7 @@ resource "buildkite_pipeline" "test_unknown" {
 const testAccPipeline_basicBeanstalk = `
 resource "buildkite_pipeline" "test_beanstalk" {
   name = "tf-acc-basic-beanstalk"
-  repository = "git@terraform-provider-buildkite.git.beanstalkapp.com:/terraform-provider-buildkite/terraform-buildkite.git"
+  repository = "git@terraform-provider-buildkite.git.beanstalkapp.com:/terraform-provider-buildkite/terraform-provider-buildkite.git"
 
   step {
     type = "script"
@@ -233,7 +233,7 @@ resource "buildkite_pipeline" "test_beanstalk" {
 const testAccPipeline_basicGithub = `
 resource "buildkite_pipeline" "test_github" {
   name = "tf-acc-basic-github"
-  repository = "git@github.com:saymedia/terraform-provider-buildkite.git"
+  repository = "git@github.com:tink-ab/terraform-provider-buildkite.git"
 
   step {
     type = "script"
@@ -246,7 +246,7 @@ resource "buildkite_pipeline" "test_github" {
 const testAccPipeline_basicBitbucket = `
 resource "buildkite_pipeline" "test_bitbucket" {
   name = "tf-acc-basic-bitbucket"
-  repository = "git@bitbucket.org:terraform-provider-buildkite/terraform-buildkite.git"
+  repository = "git@bitbucket.org:terraform-provider-buildkite/terraform-provider-buildkite.git"
 
   step {
     type = "script"
@@ -259,7 +259,7 @@ resource "buildkite_pipeline" "test_bitbucket" {
 const testAccPipeline_basicGitlab = `
 resource "buildkite_pipeline" "test_gitlab" {
   name = "tf-acc-basic-gitlab"
-  repository = "git@gitlab.com:terraform-provider-buildkite/terraform-buildkite.git"
+  repository = "git@gitlab.com:terraform-provider-buildkite/terraform-provider-buildkite.git"
 
   step {
     type = "script"
@@ -272,7 +272,7 @@ resource "buildkite_pipeline" "test_gitlab" {
 const testAccPipeline_githubSettingsTriggerModeDeployment = `
 resource "buildkite_pipeline" "test_foo" {
   name = "tf-acc-foo"
-  repository = "git@github.com:saymedia/terraform-provider-buildkite.git"
+  repository = "git@github.com:tink-ab/terraform-provider-buildkite.git"
 
   step {
     type = "script"
@@ -289,7 +289,7 @@ resource "buildkite_pipeline" "test_foo" {
 const testAccPipeline_githubSettingsBuildTags = `
 resource "buildkite_pipeline" "test_foo" {
   name = "tf-acc-foo"
-  repository = "git@github.com:saymedia/terraform-provider-buildkite.git"
+  repository = "git@github.com:tink-ab/terraform-provider-buildkite.git"
 
   step {
     type = "script"
@@ -306,7 +306,7 @@ resource "buildkite_pipeline" "test_foo" {
 const testAccPipeline_bitbucketSettingsBuildTags = `
 resource "buildkite_pipeline" "test_foo" {
   name = "tf-acc-foo"
-  repository = "git@bitbucket.org:terraform-provider-buildkite/terraform-buildkite.git"
+  repository = "git@bitbucket.org:terraform-provider-buildkite/terraform-provider-buildkite.git"
 
   step {
     type = "script"

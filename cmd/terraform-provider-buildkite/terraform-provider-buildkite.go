@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/hashicorp/terraform/plugin"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/plugin"
 
-	"github.com/saymedia/terraform-buildkite/buildkite/provider"
+	"github.com/tink-ab/terraform-provider-buildkite/buildkite/provider"
 )
 
 func main() {

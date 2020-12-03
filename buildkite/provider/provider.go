@@ -1,15 +1,15 @@
 package provider
 
 import (
-	"github.com/hashicorp/terraform/helper/schema"
-	"github.com/hashicorp/terraform/terraform"
 	"log"
 
-	"github.com/saymedia/terraform-buildkite/buildkite/client"
-	"github.com/saymedia/terraform-buildkite/buildkite/version"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+
+	"github.com/tink-ab/terraform-provider-buildkite/buildkite/client"
+	"github.com/tink-ab/terraform-provider-buildkite/buildkite/version"
 )
 
-func Provider() terraform.ResourceProvider {
+func Provider() *schema.Provider {
 	log.Printf("[DEBUG] Buildkite provider version %s", version.Version)
 	return &schema.Provider{
 		ResourcesMap: map[string]*schema.Resource{

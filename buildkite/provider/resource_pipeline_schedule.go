@@ -5,9 +5,9 @@ import (
 	"log"
 	"strings"
 
-	"github.com/hashicorp/terraform/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 
-	"github.com/saymedia/terraform-buildkite/buildkite/client"
+	"github.com/tink-ab/terraform-provider-buildkite/buildkite/client"
 )
 
 func resourcePipelineSchedule() *schema.Resource {
