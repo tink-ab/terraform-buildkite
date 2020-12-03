@@ -12,6 +12,9 @@ import (
 func Provider() *schema.Provider {
 	log.Printf("[DEBUG] Buildkite provider version %s", version.Version)
 	return &schema.Provider{
+		DataSourcesMap: map[string]*schema.Resource{
+			"buildkite_org_members": dataSourceOrgMembers(),
+		},
 		ResourcesMap: map[string]*schema.Resource{
 			"buildkite_org_member":        resourceOrgMember(),
 			"buildkite_pipeline":          resourcePipeline(),
