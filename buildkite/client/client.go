@@ -14,13 +14,13 @@ import (
 	"github.com/machinebox/graphql"
 	"github.com/pkg/errors"
 
-	"github.com/saymedia/terraform-buildkite/buildkite/version"
+	"github.com/tink-ab/terraform-provider-buildkite/buildkite/version"
 )
 
 const (
 	defaultBaseURL             = "https://api.buildkite.com/"
 	defaultGraphQLUrl          = "https://graphql.buildkite.com/v1"
-	userAgent                  = "Terraform-Buildkite/"
+	userAgent                  = "terraform-provider-buildkite/"
 	applicationJsonContentType = "application/json"
 )
 

@@ -5,8 +5,8 @@ import (
 	"github.com/hashicorp/terraform/terraform"
 	"log"
 
-	"github.com/saymedia/terraform-buildkite/buildkite/client"
-	"github.com/saymedia/terraform-buildkite/buildkite/version"
+	"github.com/tink-ab/terraform-provider-buildkite/buildkite/client"
+	"github.com/tink-ab/terraform-provider-buildkite/buildkite/version"
 )
 
 func Provider() terraform.ResourceProvider {

@@ -5,7 +5,7 @@ import (
 
 	"github.com/hashicorp/terraform/helper/schema"
 
-	"github.com/saymedia/terraform-buildkite/buildkite/client"
+	"github.com/tink-ab/terraform-provider-buildkite/buildkite/client"
 )
 
 var (
