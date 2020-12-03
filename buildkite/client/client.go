@@ -13,14 +13,11 @@ import (
 
 	"github.com/machinebox/graphql"
 	"github.com/pkg/errors"
-
-	"github.com/tink-ab/terraform-provider-buildkite/buildkite/version"
 )
 
 const (
 	defaultBaseURL             = "https://api.buildkite.com/"
 	defaultGraphQLUrl          = "https://graphql.buildkite.com/v1"
-	userAgent                  = "terraform-provider-buildkite/"
 	applicationJsonContentType = "application/json"
 )
 
@@ -32,8 +29,8 @@ type Client struct {
 	apiToken string
 }
 
-func NewClient(orgSlug string, apiToken string) *Client {
-	var authTransport http.RoundTripper = NewAuthTransport(apiToken, userAgent+version.Version, nil)
+func NewClient(orgSlug string, apiToken string, userAgent string) *Client {
+	var authTransport http.RoundTripper = NewAuthTransport(apiToken, userAgent, nil)
 	baseURL, _ := url.Parse(defaultBaseURL)
 
 	return &Client{
