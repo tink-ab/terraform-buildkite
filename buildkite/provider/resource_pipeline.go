@@ -60,6 +60,7 @@ var (
 			Type:          schema.TypeMap,
 			Optional:      true,
 			ConflictsWith: []string{"configuration"},
+			Deprecated:    "Use configuration instead that supports YAML steps",
 			Elem: &schema.Schema{
 				Type: schema.TypeString,
 			},
@@ -77,6 +78,7 @@ var (
 			Type:          schema.TypeList,
 			Optional:      true,
 			ConflictsWith: []string{"configuration"},
+			Deprecated:    "Use configuration instead that supports YAML steps",
 			Elem: &schema.Resource{
 				Schema: map[string]*schema.Schema{
 					"type": {
