@@ -20,19 +20,17 @@ resource "buildkite_pipeline" "build_something" {
 
   default_branch = "master"
   repository     = "git@github.com:my-org/awesome-repo.git"
-  
+
   github {
     build_pull_request_forks = true
   }
 
-  step {
-    name    = ":pipeline: Fetch pipeline"
-    type    = "script"
-    command = "buildkite-agent pipeline upload"
+  configuration = <<EOF
+steps:
+  - command: "buildkite-agent pipeline upload"
+    label: ":pipeline:"
+EOF
 
-    agent_query_rules = [
-    ]
-  }
 }
 ```
 
@@ -50,9 +48,11 @@ The following arguments are supported:
 
 * `default_branch` - (Optional) the default branch to build. Defaults to `master`
 
-* `env` - (Optional) pipeline environment variables
+* `env` - (Optional, Deprecated) pipeline environment variables. Switch to use `configuration` with YAML pipeline steps.
 
-* `step` - (Required) nested block list configuring the steps to run. Must provide at least one.
+* `step` - (Optional, Deprecated) nested block list configuring the steps to run. Must provide at least one. Switch to use `configuration` with YAML pipeline steps.
+
+* `configuration` - (Optional) String in YAML format with step configuration.
 
 * `bitbucket_settings` - (Optional)
 
